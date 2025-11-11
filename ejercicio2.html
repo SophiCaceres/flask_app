@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2 - Nombres</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Formulario de Nombres</h2>
+        <p>Ingresa tres nombres diferentes. El sistema mostrará el más largo y su cantidad de letras.</p>
+
+        <form method="POST">
+            <label>Nombre 1:</label>
+            <input type="text" name="nombre1" required>
+
+            <label>Nombre 2:</label>
+            <input type="text" name="nombre2" required>
+
+            <label>Nombre 3:</label>
+            <input type="text" name="nombre3" required>
+
+            <button type="submit" class="btn-lila">Enviar</button>
+        </form>
+
+        {% if resultado %}
+            {% if resultado.error %}
+                <p class="error">{{ resultado.error }}</p>
+            {% else %}
+                <div class="resultado">
+                    <p><strong>Nombre con más caracteres:</strong> {{ resultado.nombre }}</p>
+                    <p><strong>Cantidad de letras:</strong> {{ resultado.longitud }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <a href="{{ url_for('index') }}" class="btn-volver">Volver al inicio</a>
+    </div>
+</body>
+</html>
